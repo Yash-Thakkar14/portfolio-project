@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+h1,
+h2 {
+  font-family: "Roboto", sans-serif;
+}
+
+@layer utilities {
+  .gradient {
+    background: linear-gradient(-45deg, #302b63, #4c017b, #010105);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.6;
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
