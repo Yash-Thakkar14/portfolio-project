@@ -19,7 +19,6 @@ export default function TimelineScroller({
   );
   const x = useTransform(scrollYProgress, [start, end], [-24, 0]);
 
-  // ─── Experience Desktop ──────────────────────────────────────────────────────
   if (type === "exp" && layout === "desktop") {
     return (
       <div className="relative flex flex-1 justify-center items-center min-w-0">
@@ -41,56 +40,54 @@ export default function TimelineScroller({
           style={{ opacity, y, width: 300, maxWidth: "40vw" }}
           transition={{ duration: 0.4, delay: index * 0.15 }}
         >
-          <h3 className="text-xl font-semibold break-words">{exp.role}</h3>
-          <p className="text-sm text-gray-400 mb-3 break-words">
+          <h3 className="text-xl font-semibold wrap-break-word">{exp.role}</h3>
+          <p className="text-sm text-gray-400 mb-3 wrap-break-word">
             {exp.company} | {exp.duration}
           </p>
-          <p className="text-sm text-gray-300 break-words">{exp.description}</p>
+          <p className="text-sm text-gray-300 wrap-break-word">
+            {exp.description}
+          </p>
         </motion.article>
       </div>
     );
   }
 
-  // ─── Experience Mobile ───────────────────────────────────────────────────────
   if (type === "exp" && layout === "mobile") {
     return (
       <div className="relative flex items-start gap-4 pl-2">
-        {/* Dot — sits on the vertical line */}
         <motion.div
-          className="absolute -left-3.5 top-3 z-10 w-7 h-7 flex-shrink-0 rounded-full bg-white"
+          className="absolute -left-3.5 top-3 z-10 w-7 h-7 shrink-0 rounded-full bg-white"
           style={{ opacity }}
         />
-        {/* Card — sibling of dot, NOT nested inside it */}
         <motion.article
           className="bg-gray-900/80 backdrop-blur border border-gray-700/70 rounded-xl p-5 shadow-lg w-full"
           style={{ opacity, x }}
           transition={{ duration: 0.4, delay: index * 0.15 }}
         >
-          <h3 className="text-lg font-semibold break-words">{exp.role}</h3>
-          <p className="text-sm text-gray-400 mb-2 break-words">
+          <h3 className="text-lg font-semibold wrap-break-word">{exp.role}</h3>
+          <p className="text-sm text-gray-400 mb-2 wrap-break-word">
             {exp.company} | {exp.duration}
           </p>
-          <p className="text-sm text-gray-300 break-words">{exp.description}</p>
+          <p className="text-sm text-gray-300 wrap-break-word">
+            {exp.description}
+          </p>
         </motion.article>
       </div>
     );
   }
 
-  // ─── Education Desktop ───────────────────────────────────────────────────────
   if (type === "edu" && layout === "desktop") {
     return (
       <div className="relative flex flex-1 justify-center items-center min-w-0">
-        {/* Dot */}
         <motion.div
           className="z-10 w-7 h-7 rounded-full bg-white"
           style={{ scale, opacity }}
         />
-        {/* Connector line */}
+
         <motion.div
           className={`absolute ${index % 2 === 0 ? "-top-8" : "-bottom-8"} bg-white/40`}
           style={{ width: 3, height: 40, opacity }}
         />
-        {/* Card */}
         <motion.article
           className={`absolute ${
             index % 2 === 0 ? "bottom-12" : "top-12"
@@ -98,36 +95,36 @@ export default function TimelineScroller({
           style={{ opacity, y, width: 300, maxWidth: "40vw" }}
           transition={{ duration: 0.4, delay: index * 0.15 }}
         >
-          <h3 className="text-xl font-semibold break-words">{exp.degree}</h3>
-          <p className="text-sm text-gray-400 mb-3 break-words">
+          <h3 className="text-xl font-semibold wrap-break-word">
+            {exp.degree}
+          </h3>
+          <p className="text-sm text-gray-400 mb-3 wrap-break-word">
             {exp.institution} | {exp.duration}
           </p>
-          <p className="text-sm text-gray-300 break-words">{exp.modules}</p>
+          <p className="text-sm text-gray-300 wrap-break-word">{exp.modules}</p>
         </motion.article>
       </div>
     );
   }
-
-  // ─── Education Mobile ────────────────────────────────────────────────────────
   if (type === "edu" && layout === "mobile") {
     return (
       <div className="relative flex items-start gap-4 pl-2">
-        {/* Dot — sits on the vertical line */}
         <motion.div
-          className="absolute -left-3.5 top-3 z-10 w-7 h-7 flex-shrink-0 rounded-full bg-white"
+          className="absolute -left-3.5 top-3 z-10 w-7 h-7 shrink-0 rounded-full bg-white"
           style={{ opacity }}
         />
-        {/* Card — sibling of dot, NOT nested inside it */}
         <motion.article
           className="bg-gray-900/80 backdrop-blur border border-gray-700/70 rounded-xl p-5 shadow-lg w-full"
           style={{ opacity, x }}
           transition={{ duration: 0.4, delay: index * 0.15 }}
         >
-          <h3 className="text-lg font-semibold break-words">{exp.degree}</h3>
-          <p className="text-sm text-gray-400 mb-2 break-words">
+          <h3 className="text-lg font-semibold wrap-break-word">
+            {exp.degree}
+          </h3>
+          <p className="text-sm text-gray-400 mb-2 wrap-break-word">
             {exp.institution} | {exp.duration}
           </p>
-          <p className="text-sm text-gray-300 break-words">{exp.modules}</p>
+          <p className="text-sm text-gray-300 wrap-break-word">{exp.modules}</p>
         </motion.article>
       </div>
     );

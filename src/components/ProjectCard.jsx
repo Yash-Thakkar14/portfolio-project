@@ -17,7 +17,7 @@ export default function ProjectCard({ project, index }) {
   return (
     <motion.div
       className="relative flex flex-col bg-white/5 border border-white/10 rounded-2xl p-6
-                 hover:border-[#692097]/60 hover:bg-white/[0.08] transition-colors duration-300 group"
+                 hover:border-[#692097]/60 hover:bg-white/8 transition-colors duration-300 group"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -35,7 +35,7 @@ export default function ProjectCard({ project, index }) {
       <h3
         className="text-xl font-semibold text-white mb-3
                    group-hover:text-transparent group-hover:bg-clip-text
-                   group-hover:bg-gradient-to-r group-hover:from-[#1580de] group-hover:to-[#692097]
+                   group-hover:bg-linear-to-r group-hover:from-[#1580de] group-hover:to-[#692097]
                    transition-all duration-300"
       >
         {project.title}
@@ -55,7 +55,7 @@ export default function ProjectCard({ project, index }) {
       </div>
 
       {/* Description */}
-      <p className="text-gray-400 text-sm leading-relaxed flex-grow mb-6">
+      <p className="text-gray-400 text-sm leading-relaxed grow mb-6">
         {project.description}
       </p>
 

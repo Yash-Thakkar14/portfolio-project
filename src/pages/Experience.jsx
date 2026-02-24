@@ -69,9 +69,9 @@ export default function Experience() {
             {/* ── Desktop horizontal timeline (≥ 1024px) ── */}
             {!isMobile && (
               <div className="relative w-full max-w-7xl">
-                <div className="relative h-[6px] bg-white/50 rounded">
+                <div className="relative h-1.5 bg-white/50 rounded">
                   <motion.div
-                    className="absolute top-0 left-0 h-[6px] bg-white rounded origin-left"
+                    className="absolute top-0 left-0 h-1.5 bg-white rounded origin-left"
                     style={{ width: lineSize }}
                   />
                 </div>
@@ -91,12 +91,9 @@ export default function Experience() {
                 </div>
               </div>
             )}
-
-            {/* ── Mobile / tablet vertical timeline (< 1024px) ── */}
             {isMobile && (
               <div className="relative w-full max-w-lg px-4">
-                {/* Vertical line */}
-                <div className="absolute left-4 top-0 bottom-0 w-[3px] bg-white/15 rounded">
+                <div className="absolute left-4 top-0 bottom-0 w-0.75 bg-white/15 rounded">
                   <motion.div
                     className="absolute top-0 left-0 w-full bg-white rounded origin-top"
                     style={{ height: lineSize }}
