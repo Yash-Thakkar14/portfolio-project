@@ -14,6 +14,7 @@ import {
   SiRedux,
   SiMui,
   SiPython,
+  SiFormik,
 } from "react-icons/si";
 import { DiJqueryLogo } from "react-icons/di";
 import { motion, useMotionValue } from "framer-motion";
@@ -33,6 +34,7 @@ export default function Skills() {
     { icon: <DiJqueryLogo />, name: "jQuery" },
     { icon: <FaBootstrap />, name: "Bootstrap" },
     { icon: <FaSalesforce />, name: "Lightning Web Components" },
+    { icon: <SiFormik />, name: "Formik" },
   ];
 
   const repeated = [...skills, ...skills];
