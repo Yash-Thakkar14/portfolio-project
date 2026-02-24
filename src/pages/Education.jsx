@@ -17,7 +17,7 @@ const education = [
     ],
   },
   {
-    degree: "Bachelor of Technology in Chemical Engineering",
+    degree: "B.TECH in Chemical Engineering",
     institution: "National Institute of Technology, India",
     duration: "2019 – 2023",
     modules: ["First Class with Distinction"],
