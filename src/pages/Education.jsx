@@ -1,21 +1,26 @@
-// src/pages/Education.jsx
-
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import TimelineScroller from "../components/TimelineScroller";
 
 const education = [
   {
-    degree: "Master of Science in Information Systems & Operations Management",
+    degree: "MSc Information Systems & Operations Management",
     institution: "University of Nottingham, UK",
-    duration: "2025 - 2026",
-    modules: "Specializing in Data Analytics and Supply Chain Management",
+    duration: "2025 – 2026",
+    modules: [
+      "Information System Design & Development",
+      "Business Intelligence & Analytics",
+      "Data Management & Manipulation",
+      "Project Management",
+      "E-Business",
+      "Operations & Supply Chain Strategy",
+    ],
   },
   {
-    degree: "Bachelor of Engineering in Chemical",
+    degree: "Bachelor of Technology in Chemical Engineering",
     institution: "National Institute of Technology, India",
-    duration: "2019 - 2023",
-    modules: "Graduated with First Class with Distinction",
+    duration: "2019 – 2023",
+    modules: ["First Class with Distinction"],
   },
 ];
 
@@ -24,7 +29,6 @@ export default function Education() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Changed from 768 → 1024 so tablets also use the vertical layout
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
     checkMobile();
     window.addEventListener("resize", checkMobile);
@@ -66,12 +70,11 @@ export default function Education() {
           </motion.h2>
 
           <div className="flex flex-1 items-center justify-center px-6 pb-10">
-            {/* ── Desktop horizontal timeline (≥ 1024px) ── */}
             {!isMobile && (
               <div className="relative w-full max-w-7xl">
-                <div className="relative h-[6px] bg-white/50 rounded">
+                <div className="relative h-1.5 bg-white/50 rounded">
                   <motion.div
-                    className="absolute top-0 left-0 h-[6px] bg-white rounded origin-left"
+                    className="absolute top-0 left-0 h-1.5 bg-white rounded origin-left"
                     style={{ width: lineSize }}
                   />
                 </div>
@@ -91,11 +94,8 @@ export default function Education() {
                 </div>
               </div>
             )}
-
-            {/* ── Mobile / tablet vertical timeline (< 1024px) ── */}
             {isMobile && (
               <div className="relative w-full max-w-lg px-4">
-                {/* Vertical line */}
                 <div className="absolute left-4 top-0 bottom-0 w-[3px] bg-white/15 rounded">
                   <motion.div
                     className="absolute top-0 left-0 w-full bg-white rounded origin-top"

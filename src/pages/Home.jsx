@@ -1,8 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { motion, scale } from "framer-motion";
+import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import ParticlesBackground from "../components/ParticlesBackground";
-import { href } from "react-router-dom";
 
 export default function Home() {
   const socials = [
@@ -26,11 +25,7 @@ export default function Home() {
       filter:
         "drop-shadow(0 0 8px rgba(13,88,204,0.9)) drop-shadow(0 0 18px rgba(45, 27, 78,0.8))",
     },
-    tap: {
-      scale: 0.95,
-      y: 0,
-      transition: { duration: 0.08 },
-    },
+    tap: { scale: 0.95, y: 0, transition: { duration: 0.08 } },
   };
 
   const roles = useMemo(
@@ -66,12 +61,13 @@ export default function Home() {
     <section id="home" className="w-full h-screen relative bg-black">
       <ParticlesBackground />
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-32 -left-32 w-62.5 sm:w-87.5 md:w-125 h-62.5 sm:h-87.5 md:h-125 rounded-full bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097] blur-3xl animate-glow-pulse"></div>
+        <div className="absolute -top-32 -left-32 w-62.5 sm:w-87.5 md:w-125 h-62.5 sm:h-87.5 md:h-125 rounded-full bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097] blur-3xl animate-glow-pulse" />
         <div
           className="absolute bottom-0 right-0 w-62.5 sm:w-87.5 md:w-125 h-62.5 sm:h-87.5 md:h-125 rounded-full bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097] blur-3xl animate-glow-pulse"
           style={{ animationDelay: "1.5s" }}
-        ></div>
+        />
       </div>
+
       <div className="relative z-10 h-full w-full max-w-7xl mx-auto px-4 flex items-center justify-center lg:justify-start">
         <div className="w-full lg:pr-24 mx-auto max-w-3xl">
           <motion.div
@@ -84,8 +80,9 @@ export default function Home() {
             <span
               className="inline-block w-0.5 ml-1 bg-white animate-pulse align-middle"
               style={{ height: "1em" }}
-            ></span>
+            />
           </motion.div>
+
           <motion.h1
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1580de] via-[#22217f] to-[#302b63] drop-shadow-lg"
             initial={{ opacity: 0, y: 40 }}
@@ -93,20 +90,23 @@ export default function Home() {
             transition={{ duration: 1 }}
           >
             Hello, I'm
-            <br />{" "}
+            <br />
             <span className="text-white font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl lg:whitespace-nowrap">
               Yash Thakkar
             </span>
           </motion.h1>
+
           <motion.p
             className="mt-6 text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis
-            natus incidunt atque cum iure rerum pariatur{" "}
+            MSc Information Systems student & Frontend Developer with 2 years at
+            Deloitte — building fast, accessible React applications with clean,
+            maintainable code.
           </motion.p>
+
           <motion.div
             className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-6"
             initial={{ opacity: 0 }}
@@ -122,11 +122,12 @@ export default function Home() {
             <a
               href="/CV_FrontEndDev_UK.pdf"
               download
-              className="px-6 py-3 rounded-full text-lg front-medium text-black bg-white hover:bg-gray-200 shadow-lg hover:scale-105 transition-all"
+              className="px-6 py-3 rounded-full text-lg font-medium text-black bg-white hover:bg-gray-200 shadow-lg hover:scale-105 transition-all"
             >
               My Resume
             </a>
           </motion.div>
+
           <div className="mt-10 flex gap-5 text-2xl md:text-3xl justify-center lg:justify-start">
             {socials.map(({ Icon, label, href }) => (
               <motion.a

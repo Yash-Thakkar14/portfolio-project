@@ -13,7 +13,6 @@ export default function Contact() {
     email: "",
     message: "",
   });
-
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("");
 
@@ -37,7 +36,6 @@ export default function Contact() {
     e.preventDefault();
     if (!validateForm()) return;
     setStatus("sending");
-
     try {
       await emailjs.send(
         SERVICE_ID,
@@ -65,7 +63,7 @@ export default function Contact() {
       className="w-full min-h-screen relative bg-black overflow-hidden text-white py-20 px-6 md:px-20 flex flex-col md:flex-row md:justify-center items-center gap-10"
     >
       <ParticlesBackground />
-      <div className="relative z-10 w-full flex flex-col md:flex-row md:justify-center items-center gap-10 ">
+      <div className="relative z-10 w-full flex flex-col md:flex-row md:justify-center items-center gap-10">
         <motion.div
           className="w-full md:w-1/2 bg-white/5 p-8 rounded-2xl shadow-lg border border-white/10"
           initial={{ opacity: 0, x: 50 }}
@@ -84,7 +82,7 @@ export default function Contact() {
                 placeholder="Your Name"
                 value={formData.name}
                 onChange={handleChange}
-                className={`p-3 rounded-md bg-white/10 border ${errors.name ? "border-red-500" : "border-gray-500"} text-white focus:outline-none focus:border-blue-500`}
+                className={`p-3 rounded-md bg-white/10 border ${errors.name ? "border-red-500" : "border-gray-500"} text-white focus:outline-none focus:border-[#692097] transition-colors`}
               />
               {errors.name && (
                 <p className="text-red-500 text-xs">{errors.name}</p>
@@ -100,7 +98,7 @@ export default function Contact() {
                 placeholder="Your Email"
                 value={formData.email}
                 onChange={handleChange}
-                className={`p-3 rounded-md bg-white/10 border ${errors.email ? "border-red-500" : "border-gray-500"} text-white focus:outline-none focus:border-blue-500`}
+                className={`p-3 rounded-md bg-white/10 border ${errors.email ? "border-red-500" : "border-gray-500"} text-white focus:outline-none focus:border-[#692097] transition-colors`}
               />
               {errors.email && (
                 <p className="text-red-500 text-xs">{errors.email}</p>
@@ -116,8 +114,8 @@ export default function Contact() {
                 placeholder="Your Message"
                 onChange={handleChange}
                 rows={4}
-                className={`bg-white/10 border ${errors.message ? "border-red-500" : "border-white/20"} rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-white/30 resize-none`}
-              ></textarea>
+                className={`bg-white/10 border ${errors.message ? "border-red-500" : "border-white/20"} rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#692097]/50 transition-colors resize-none`}
+              />
               {errors.message && (
                 <p className="text-red-500 text-xs">{errors.message}</p>
               )}
@@ -133,12 +131,15 @@ export default function Contact() {
                     : "Something went wrong. Please try again."}
               </p>
             )}
+
             <motion.button
-              className="bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white py-3 rounded-md font-semibold transition"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              disabled={status === "sending"}
               type="submit"
+              disabled={status === "sending"}
+              className="py-3 rounded-full font-semibold text-white
+                         bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097]
+                         shadow-lg disabled:opacity-60 transition-all"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
             >
               {status === "sending" ? "Sending..." : "Send Message"}
             </motion.button>

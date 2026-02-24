@@ -1,5 +1,3 @@
-// src/pages/Experience.jsx
-
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import TimelineScroller from "../components/TimelineScroller";
@@ -8,14 +6,29 @@ const experiences = [
   {
     role: "Frontend Developer",
     company: "Deloitte USI",
-    duration: "2023 - 2025",
-    description: "Front end dev at Deloitte USI",
+    duration: "Jul 2023 – Jul 2025",
+    description:
+      "Built React apps & Salesforce LWCs in Agile teams. Cut CI failures by 20%. Recognised with 3 awards.",
+    technologies: [
+      "React",
+      "TypeScript",
+      "Salesforce LWC",
+      "Redux Toolkit",
+      "Jest",
+      "WCAG",
+    ],
   },
   {
     role: "Process Engineering Intern",
     company: "Zydus Cadila Healthcare",
-    duration: "2022",
-    description: "Process engineering intern at Zydus Cadila Healthcare",
+    duration: "Nov – Dec 2021",
+    description:
+      "Root cause analysis on a corrosion issue — reduced costs by 12% and downtime by 15%.",
+    technologies: [
+      "Root Cause Analysis",
+      "Process Engineering",
+      "Documentation",
+    ],
   },
 ];
 
@@ -24,7 +37,6 @@ export default function Experience() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Changed from 768 → 1024 so tablets also use the vertical layout
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
     checkMobile();
     window.addEventListener("resize", checkMobile);
@@ -66,7 +78,6 @@ export default function Experience() {
           </motion.h2>
 
           <div className="flex flex-1 items-center justify-center px-6 pb-10">
-            {/* ── Desktop horizontal timeline (≥ 1024px) ── */}
             {!isMobile && (
               <div className="relative w-full max-w-7xl">
                 <div className="relative h-1.5 bg-white/50 rounded">
@@ -93,7 +104,7 @@ export default function Experience() {
             )}
             {isMobile && (
               <div className="relative w-full max-w-lg px-4">
-                <div className="absolute left-4 top-0 bottom-0 w-0.75 bg-white/15 rounded">
+                <div className="absolute left-4 top-0 bottom-0 w-[3px] bg-white/15 rounded">
                   <motion.div
                     className="absolute top-0 left-0 w-full bg-white rounded origin-top"
                     style={{ height: lineSize }}

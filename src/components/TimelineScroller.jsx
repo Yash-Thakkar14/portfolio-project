@@ -1,6 +1,23 @@
 import { motion, useTransform } from "framer-motion";
 import React from "react";
 
+function Pills({ items }) {
+  if (!items?.length) return null;
+  return (
+    <div className="flex flex-wrap gap-1.5 mt-3">
+      {items.map((item) => (
+        <span
+          key={item}
+          className="px-2 py-0.5 rounded-full text-[11px] font-medium text-gray-300
+                     bg-gradient-to-r from-[#302b63]/60 to-[#37053c]/60 border border-white/10"
+        >
+          {item}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export default function TimelineScroller({
   exp,
   index,
@@ -22,41 +39,36 @@ export default function TimelineScroller({
   if (type === "exp" && layout === "desktop") {
     return (
       <div className="relative flex flex-1 justify-center items-center min-w-0">
-        {/* Dot */}
         <motion.div
           className="z-10 w-7 h-7 rounded-full bg-white"
           style={{ scale, opacity }}
         />
-        {/* Connector line */}
         <motion.div
           className={`absolute ${index % 2 === 0 ? "-top-8" : "-bottom-8"} bg-white/40`}
           style={{ width: 3, height: 40, opacity }}
         />
-        {/* Card */}
         <motion.article
           className={`absolute ${
             index % 2 === 0 ? "bottom-12" : "top-12"
-          } bg-gray-900/80 backdrop-blur border border-gray-700/70 rounded-xl p-7 shadow-lg`}
+          } bg-gray-900/80 backdrop-blur border border-gray-700/70 rounded-xl p-5 shadow-lg`}
           style={{ opacity, y, width: 300, maxWidth: "40vw" }}
           transition={{ duration: 0.4, delay: index * 0.15 }}
         >
-          <h3 className="text-xl font-semibold wrap-break-word">{exp.role}</h3>
-          <p className="text-sm text-gray-400 mb-3 wrap-break-word">
+          <h3 className="text-lg font-semibold break-words">{exp.role}</h3>
+          <p className="text-xs text-gray-400 mb-1 break-words">
             {exp.company} | {exp.duration}
           </p>
-          <p className="text-sm text-gray-300 wrap-break-word">
-            {exp.description}
-          </p>
+          <p className="text-sm text-gray-300 break-words">{exp.description}</p>
+          <Pills items={exp.technologies} />
         </motion.article>
       </div>
     );
   }
-
   if (type === "exp" && layout === "mobile") {
     return (
       <div className="relative flex items-start gap-4 pl-2">
         <motion.div
-          className="absolute -left-3.5 top-3 z-10 w-7 h-7 shrink-0 rounded-full bg-white"
+          className="absolute -left-3.5 top-3 z-10 w-7 h-7 flex-shrink-0 rounded-full bg-white"
           style={{ opacity }}
         />
         <motion.article
@@ -64,18 +76,16 @@ export default function TimelineScroller({
           style={{ opacity, x }}
           transition={{ duration: 0.4, delay: index * 0.15 }}
         >
-          <h3 className="text-lg font-semibold wrap-break-word">{exp.role}</h3>
-          <p className="text-sm text-gray-400 mb-2 wrap-break-word">
+          <h3 className="text-lg font-semibold break-words">{exp.role}</h3>
+          <p className="text-xs text-gray-400 mb-1 break-words">
             {exp.company} | {exp.duration}
           </p>
-          <p className="text-sm text-gray-300 wrap-break-word">
-            {exp.description}
-          </p>
+          <p className="text-sm text-gray-300 break-words">{exp.description}</p>
+          <Pills items={exp.technologies} />
         </motion.article>
       </div>
     );
   }
-
   if (type === "edu" && layout === "desktop") {
     return (
       <div className="relative flex flex-1 justify-center items-center min-w-0">
@@ -83,7 +93,6 @@ export default function TimelineScroller({
           className="z-10 w-7 h-7 rounded-full bg-white"
           style={{ scale, opacity }}
         />
-
         <motion.div
           className={`absolute ${index % 2 === 0 ? "-top-8" : "-bottom-8"} bg-white/40`}
           style={{ width: 3, height: 40, opacity }}
@@ -91,17 +100,15 @@ export default function TimelineScroller({
         <motion.article
           className={`absolute ${
             index % 2 === 0 ? "bottom-12" : "top-12"
-          } bg-gray-900/80 backdrop-blur border border-gray-700/70 rounded-xl p-7 shadow-lg`}
-          style={{ opacity, y, width: 300, maxWidth: "40vw" }}
+          } bg-gray-900/80 backdrop-blur border border-gray-700/70 rounded-xl p-5 shadow-lg`}
+          style={{ opacity, y, width: 320, maxWidth: "42vw" }}
           transition={{ duration: 0.4, delay: index * 0.15 }}
         >
-          <h3 className="text-xl font-semibold wrap-break-word">
-            {exp.degree}
-          </h3>
-          <p className="text-sm text-gray-400 mb-3 wrap-break-word">
+          <h3 className="text-lg font-semibold break-words">{exp.degree}</h3>
+          <p className="text-xs text-gray-400 mb-1 break-words">
             {exp.institution} | {exp.duration}
           </p>
-          <p className="text-sm text-gray-300 wrap-break-word">{exp.modules}</p>
+          <Pills items={exp.modules} />
         </motion.article>
       </div>
     );
@@ -110,7 +117,7 @@ export default function TimelineScroller({
     return (
       <div className="relative flex items-start gap-4 pl-2">
         <motion.div
-          className="absolute -left-3.5 top-3 z-10 w-7 h-7 shrink-0 rounded-full bg-white"
+          className="absolute -left-3.5 top-3 z-10 w-7 h-7 flex-shrink-0 rounded-full bg-white"
           style={{ opacity }}
         />
         <motion.article
@@ -118,13 +125,11 @@ export default function TimelineScroller({
           style={{ opacity, x }}
           transition={{ duration: 0.4, delay: index * 0.15 }}
         >
-          <h3 className="text-lg font-semibold wrap-break-word">
-            {exp.degree}
-          </h3>
-          <p className="text-sm text-gray-400 mb-2 wrap-break-word">
+          <h3 className="text-lg font-semibold break-words">{exp.degree}</h3>
+          <p className="text-xs text-gray-400 mb-1 break-words">
             {exp.institution} | {exp.duration}
           </p>
-          <p className="text-sm text-gray-300 wrap-break-word">{exp.modules}</p>
+          <Pills items={exp.modules} />
         </motion.article>
       </div>
     );

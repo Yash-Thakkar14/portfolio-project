@@ -1,13 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import profileImg from "../assets/p.jpg";
-import { label } from "framer-motion/client";
 
 export default function About() {
   const stats = [
-    { label: "Experience", value: "2+ years" },
-    { label: "Speciality", value: "React" },
-    { label: "Focus", value: "UX" },
+    { label: "Experience", value: "2+ Years" },
+    { label: "Deloitte Awards", value: "3 🏆" },
+    { label: "Speciality", value: "React & TS" },
   ];
 
   const glows = [
@@ -29,6 +28,7 @@ export default function About() {
           />
         ))}
       </div>
+
       <div className="relative z-10 max-w-6xl w-full mx-auto px-6 md:px-10 lg:px-12 py-10 flex flex-col gap-12">
         <motion.div
           className="flex flex-col md:flex-row items-center md:items-stretch gap-8"
@@ -44,29 +44,23 @@ export default function About() {
           >
             <img
               src={profileImg}
-              alt="Profile"
+              alt="Yash Thakkar"
               className="w-full h-full object-cover"
             />
           </motion.div>
-          <div className="flex flex-1 flex-col justify-center text-center md:text-left ">
-            <h2
-              className="text-4xl sm:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent
-            bg-gradient-to-r from-[#1580de] via-[#22217f] to-[#302b63] "
-            >
+          <div className="flex flex-1 flex-col justify-center text-center md:text-left">
+            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#1580de] via-[#22217f] to-[#302b63]">
               Yash Thakkar
             </h2>
-            <p className="mt-2 text-lg sm:text-xl text-white/90 ">
+            <p className="mt-2 text-lg sm:text-xl text-white/90">
               Frontend Developer
             </p>
             <p className="mt-4 text-gray-300 leading-relaxed text-base sm:text-lg max-w-2xl md:max-w-3xl">
-              I'm a passionate frontend developer with a knack for crafting
-              visually stunning and user-friendly web applications. With a
-              strong foundation in HTML, CSS, and JavaScript, I specialize in
-              React to create dynamic and responsive interfaces. I thrive on
-              turning complex design concepts into seamless user experiences,
-              ensuring that every project I work on is not only functional but
-              also aesthetically pleasing.
+              Frontend developer with 2 years at Deloitte specialising in React
+              and TypeScript — building accessible, performant web applications
+              and Salesforce Lightning Web Components.
             </p>
+
             <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 max-w-xl">
               {stats.map((item, i) => (
                 <motion.div
@@ -109,9 +103,17 @@ export default function About() {
             About Me
           </h3>
           <p className="text-gray-300 leading-relaxed text-base sm:text-lg">
-            para 1
+            At Deloitte I worked across React app migration from
+            Angular,Development of customized AI Policy Engine for Government
+            Healthcare Department and integrated multi-participant video calling
+            for a client pitch.
           </p>
-          <p className="mt-4 text-gray-400 text-base sm:text-lg">para 2</p>
+          <p className="mt-4 text-gray-400 text-base sm:text-lg">
+            I'm currently completing my MSc at the University of Nottingham,
+            focusing on Information System Design & Development and Business
+            Intelligence & Analytics bridging my engineering background with
+            data-driven product thinking.
+          </p>
         </motion.div>
       </div>
     </section>
