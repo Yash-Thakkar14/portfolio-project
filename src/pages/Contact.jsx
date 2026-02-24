@@ -20,6 +20,7 @@ export default function Contact() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (errors[name]) setErrors((p) => ({ ...p, [name]: "" }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const validateForm = () => {
@@ -44,6 +45,9 @@ export default function Contact() {
         {
           from_name: formData.name,
           reply_to: formData.email,
+          email: formData.email,
+          message: formData.message,
+          name: formData.name,
         },
         PUBLIC_KEY,
       );
@@ -68,7 +72,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold mb-6">Let's Work Togeather</h2>
+          <h2 className="text-3xl font-bold mb-6">Let's Work Together</h2>
           <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
             <div className="flex flex-col">
               <label className="mb-1">

@@ -50,7 +50,7 @@ export default function Navbar() {
         }
         timerID.current = setTimeout(() => {
           setVisible(false);
-        }, 300);
+        }, 800);
       }
       lastScrollY.current = currentScrollY;
     };
