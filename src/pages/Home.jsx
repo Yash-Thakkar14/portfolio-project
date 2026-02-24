@@ -32,10 +32,12 @@ export default function Home() {
       transition: { duration: 0.08 },
     },
   };
+
   const roles = useMemo(
     () => ["Frontend Developer", "Web Developer", "React Developer"],
     [],
   );
+
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);

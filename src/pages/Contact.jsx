@@ -62,10 +62,10 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="w-full min-h-screen relative bg-black overflow-hidden text-white py-20 px-6 md:px-20 flex flex-col md:flex-row items-center gap-10"
+      className="w-full min-h-screen relative bg-black overflow-hidden text-white py-20 px-6 md:px-20 flex flex-col md:flex-row md:justify-center items-center gap-10"
     >
       <ParticlesBackground />
-      <div className="relative z-10 w-full flex flex-col md:flex-row items-center gap-10 ">
+      <div className="relative z-10 w-full flex flex-col md:flex-row md:justify-center items-center gap-10 ">
         <motion.div
           className="w-full md:w-1/2 bg-white/5 p-8 rounded-2xl shadow-lg border border-white/10"
           initial={{ opacity: 0, x: 50 }}
