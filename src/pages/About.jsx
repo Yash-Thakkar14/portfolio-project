@@ -40,15 +40,7 @@ export default function About() {
       </div>
 
       <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col gap-4">
-        {/*
-          ┌──────────────┬─────────────────────────┐
-          │              │  Bio + CTAs             │
-          │  Photo       ├──────────────┬──────────┤
-          │              │  Stats       │  MSc     │
-          └──────────────┴──────────────┴──────────┘
-        */}
         <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 gap-4">
-          {/* Photo — tall, spans 2 rows */}
           <motion.div
             className={`${card} md:col-span-4 md:row-span-2 min-h-[320px] p-0`}
             {...fadeUp(0)}
@@ -63,8 +55,6 @@ export default function About() {
               <p className="text-xs text-gray-400 mt-0.5">Frontend Developer</p>
             </div>
           </motion.div>
-
-          {/* Bio + CTAs — top right */}
           <motion.div
             className={`${card} md:col-span-8 flex flex-col justify-between gap-5`}
             {...fadeUp(0.1)}
@@ -101,8 +91,6 @@ export default function About() {
               </a>
             </div>
           </motion.div>
-
-          {/* Stats — bottom middle */}
           <motion.div
             className={`${card} md:col-span-5 flex items-center justify-around gap-2`}
             {...fadeUp(0.2)}
@@ -114,8 +102,6 @@ export default function About() {
               </div>
             ))}
           </motion.div>
-
-          {/* MSc — bottom right */}
           <motion.div
             className={`${card} md:col-span-3 flex flex-col justify-center`}
             {...fadeUp(0.25)}
