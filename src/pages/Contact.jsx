@@ -2,60 +2,57 @@ import React, { useState } from "react";
 import ParticlesBackground from "../components/ParticlesBackground";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID;
 const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
 
+const validationSchema = Yup.object({
+  name: Yup.string()
+    .min(2, "Name must be at least 2 characters")
+    .required("This field is required"),
+  email: Yup.string()
+    .email("Please enter a valid email address")
+    .required("This field is required"),
+  message: Yup.string()
+    .min(10, "Message must be at least 10 characters")
+    .required("This field is required"),
+});
+
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (errors[name]) setErrors((p) => ({ ...p, [name]: "" }));
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const formik = useFormik({
+    initialValues: { name: "", email: "", message: "" },
+    validationSchema,
+    onSubmit: async (values, { resetForm }) => {
+      setStatus("sending");
+      try {
+        await emailjs.send(
+          SERVICE_ID,
+          TEMPLATE_ID,
+          {
+            from_name: values.name,
+            reply_to: values.email,
+            email: values.email,
+            message: values.message,
+            name: values.name,
+          },
+          PUBLIC_KEY,
+        );
+        setStatus("success");
+        resetForm();
+      } catch (error) {
+        console.error("EmailJS error:", error);
+        setStatus("error");
+      }
+    },
+  });
 
-  const validateForm = () => {
-    const required = ["name", "email", "message"];
-    const newErrors = {};
-    required.forEach((f) => {
-      !formData[f].trim() && (newErrors[f] = "This field is required");
-    });
-    setErrors(newErrors);
-    return !Object.keys(newErrors).length;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validateForm()) return;
-    setStatus("sending");
-    try {
-      await emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        {
-          from_name: formData.name,
-          reply_to: formData.email,
-          email: formData.email,
-          message: formData.message,
-          name: formData.name,
-        },
-        PUBLIC_KEY,
-      );
-      setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
-    } catch (error) {
-      console.error("EmailJS error:", error);
-      setStatus("error");
-    }
-  };
+  const fieldError = (field) =>
+    formik.touched[field] && formik.errors[field] ? formik.errors[field] : null;
 
   return (
     <section
@@ -71,7 +68,8 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl font-bold mb-6">Let's Work Together</h2>
-          <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+
+          <form className="flex flex-col gap-5" onSubmit={formik.handleSubmit}>
             <div className="flex flex-col">
               <label className="mb-1">
                 Your Name<span className="text-red-500">*</span>
@@ -80,12 +78,17 @@ export default function Contact() {
                 type="text"
                 name="name"
                 placeholder="Your Name"
-                value={formData.name}
-                onChange={handleChange}
-                className={`p-3 rounded-md bg-white/10 border ${errors.name ? "border-red-500" : "border-gray-500"} text-white focus:outline-none focus:border-[#692097] transition-colors`}
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                className={`p-3 rounded-md bg-white/10 border ${
+                  fieldError("name") ? "border-red-500" : "border-gray-500"
+                } text-white focus:outline-none focus:border-[#692097] transition-colors`}
               />
-              {errors.name && (
-                <p className="text-red-500 text-xs">{errors.name}</p>
+              {fieldError("name") && (
+                <p className="text-red-500 text-xs mt-1">
+                  {fieldError("name")}
+                </p>
               )}
             </div>
             <div className="flex flex-col">
@@ -96,12 +99,17 @@ export default function Contact() {
                 type="email"
                 name="email"
                 placeholder="Your Email"
-                value={formData.email}
-                onChange={handleChange}
-                className={`p-3 rounded-md bg-white/10 border ${errors.email ? "border-red-500" : "border-gray-500"} text-white focus:outline-none focus:border-[#692097] transition-colors`}
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                className={`p-3 rounded-md bg-white/10 border ${
+                  fieldError("email") ? "border-red-500" : "border-gray-500"
+                } text-white focus:outline-none focus:border-[#692097] transition-colors`}
               />
-              {errors.email && (
-                <p className="text-red-500 text-xs">{errors.email}</p>
+              {fieldError("email") && (
+                <p className="text-red-500 text-xs mt-1">
+                  {fieldError("email")}
+                </p>
               )}
             </div>
             <div className="flex flex-col">
@@ -110,19 +118,30 @@ export default function Contact() {
               </label>
               <textarea
                 name="message"
-                value={formData.message}
                 placeholder="Your Message"
-                onChange={handleChange}
+                value={formik.values.message}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 rows={4}
-                className={`bg-white/10 border ${errors.message ? "border-red-500" : "border-white/20"} rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#692097]/50 transition-colors resize-none`}
+                className={`bg-white/10 border ${
+                  fieldError("message") ? "border-red-500" : "border-white/20"
+                } rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#692097]/50 transition-colors resize-none`}
               />
-              {errors.message && (
-                <p className="text-red-500 text-xs">{errors.message}</p>
+              {fieldError("message") && (
+                <p className="text-red-500 text-xs mt-1">
+                  {fieldError("message")}
+                </p>
               )}
             </div>
             {status && (
               <p
-                className={`text-sm ${status === "success" ? "text-green-400" : status === "error" ? "text-red-400" : "text-yellow-400"}`}
+                className={`text-sm ${
+                  status === "success"
+                    ? "text-green-400"
+                    : status === "error"
+                      ? "text-red-400"
+                      : "text-yellow-400"
+                }`}
               >
                 {status === "sending"
                   ? "Sending message..."
@@ -131,10 +150,9 @@ export default function Contact() {
                     : "Something went wrong. Please try again."}
               </p>
             )}
-
             <motion.button
               type="submit"
-              disabled={status === "sending"}
+              disabled={status === "sending" || formik.isSubmitting}
               className="py-3 rounded-full font-semibold text-white
                          bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097]
                          shadow-lg disabled:opacity-60 transition-all"

@@ -8,7 +8,7 @@ const projects = [
     title: "Portfolio Project",
     description:
       "A personal portfolio website built with React, showcasing my skills, experience, and projects. Features smooth animations using Framer Motion and a responsive design with Tailwind CSS.",
-    technologies: ["React", "Framer Motion", "Tailwind CSS"],
+    technologies: ["React", "Framer Motion", "Tailwind CSS", "Formik", "Yup"],
     github: "https://github.com/Yash-Thakkar14/portfolio-project",
     live: "https://portfolio-project-1dpy.vercel.app",
   },
