@@ -89,7 +89,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            Hello, I'm
+            Hi, I'm
             <br />
             <span className="text-white font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl lg:whitespace-nowrap">
               Yash Thakkar
@@ -102,9 +102,10 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            MSc Information Systems student & Frontend Developer with 2 years at
-            Deloitte — building fast, accessible React applications with clean,
-            maintainable code.
+            Frontend Developer with 2+ years of enterprise experience building
+            scalable, accessible web applications using React and TypeScript. I
+            deliver clean architecture, strong performance, and reliable feature
+            releases in Agile environments.
           </motion.p>
 
           <motion.div

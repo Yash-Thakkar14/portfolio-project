@@ -56,9 +56,11 @@ export default function About() {
               Frontend Developer
             </p>
             <p className="mt-4 text-gray-300 leading-relaxed text-base sm:text-lg max-w-2xl md:max-w-3xl">
-              Frontend developer with 2 years at Deloitte specialising in React
-              and TypeScript — building accessible, performant web applications
-              and Salesforce Lightning Web Components.
+              Frontend Developer with experience of delivering enterprise-grade
+              applications in Agile teams. Specialized in React and TypeScript,
+              with hands-on experience in application migration, analytics
+              dashboards, accessibility compliance, and cross-team feature
+              delivery.
             </p>
 
             <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 max-w-xl">
@@ -103,16 +105,18 @@ export default function About() {
             About Me
           </h3>
           <p className="text-gray-300 leading-relaxed text-base sm:text-lg">
-            At Deloitte I worked across React app migration from
-            Angular,Development of customized AI Policy Engine for Government
-            Healthcare Department and integrated multi-participant video calling
-            for a client pitch.
+            I have extensively contributed towards delivering enterprise
+            applications in government and healthcare domains. I’ve contributed
+            to Angular-to-React migrations, built AI-powered analytics
+            dashboards, and developed accessible, WCAG-compliant user
+            interfaces.
           </p>
           <p className="mt-4 text-gray-400 text-base sm:text-lg">
-            I'm currently completing my MSc at the University of Nottingham,
-            focusing on Information System Design & Development and Business
-            Intelligence & Analytics bridging my engineering background with
-            data-driven product thinking.
+            Beyond coding, I collaborate closely with cross-functional teams to
+            ensure smooth feature delivery from development through
+            release.Currently completing an MSc in Information Systems at the
+            University of Nottingham, expanding my skills in system design and
+            project delivery.
           </p>
         </motion.div>
       </div>
