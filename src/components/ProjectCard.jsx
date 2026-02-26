@@ -24,24 +24,30 @@ export default function ProjectCard({ project, index }) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -6, transition: { duration: 0.25 } }}
     >
-      {/* Inner glow on hover */}
       <div
         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100
                     transition-opacity duration-300 pointer-events-none
                     bg-gradient-to-br from-[#302b63]/20 via-transparent to-[#692097]/20"
       />
-
-      {/* Title */}
-      <h3
-        className="text-xl font-semibold text-white mb-3
-                   group-hover:text-transparent group-hover:bg-clip-text
-                   group-hover:bg-linear-to-r group-hover:from-[#1580de] group-hover:to-[#692097]
-                   transition-all duration-300"
-      >
-        {project.title}
-      </h3>
-
-      {/* Tech tags */}
+      <div className="flex items-start justify-between gap-3 mb-3">
+        <h3
+          className="text-xl font-semibold text-white
+                     group-hover:text-transparent group-hover:bg-clip-text
+                     group-hover:bg-gradient-to-r group-hover:from-[#1580de] group-hover:to-[#692097]
+                     transition-all duration-300"
+        >
+          {project.title}
+        </h3>
+        {project.live && (
+          <span
+            className="flex-shrink-0 flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium
+                           bg-green-500/10 border border-green-500/30 text-green-400"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+            Live
+          </span>
+        )}
+      </div>
       <div className="flex flex-wrap gap-2 mb-4">
         {project.technologies.map((tech) => (
           <span
@@ -53,13 +59,9 @@ export default function ProjectCard({ project, index }) {
           </span>
         ))}
       </div>
-
-      {/* Description */}
       <p className="text-gray-400 text-sm leading-relaxed grow mb-6">
         {project.description}
       </p>
-
-      {/* Links */}
       <div className="flex items-center gap-5 text-xl mt-auto">
         {project.github && (
           <motion.a

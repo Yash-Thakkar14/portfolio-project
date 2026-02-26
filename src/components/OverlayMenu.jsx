@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FiX } from "react-icons/fi";
 import React from "react";
 
-export default function OverlayMenu({ isOpen, onClose }) {
+export default function OverlayMenu({ isOpen, onClose, activeSection }) {
   const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
   const origin = isMobile ? "95% 8%" : "50% 8%";
 
@@ -33,22 +33,29 @@ export default function OverlayMenu({ isOpen, onClose }) {
               "Experience",
               "Projects",
               "Contact",
-            ].map((item, index) => (
-              <motion.li
-                key={item}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + index * 0.1 }}
-              >
-                <a
-                  href={`#${item.toLowerCase()}`}
-                  onClick={onClose}
-                  className="text-4xl text-white font-semibold hover:text-purple-700 transition-colors duration-300"
+            ].map((item, index) => {
+              const isActive = activeSection === item.toLowerCase();
+              return (
+                <motion.li
+                  key={item}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 + index * 0.1 }}
                 >
-                  {item}
-                </a>
-              </motion.li>
-            ))}
+                  <a
+                    href={`#${item.toLowerCase()}`}
+                    onClick={onClose}
+                    className={`text-4xl font-semibold transition-colors duration-300 ${
+                      isActive
+                        ? "text-transparent bg-clip-text bg-gradient-to-r from-[#1580de] via-[#22217f] to-[#692097]"
+                        : "text-white hover:text-purple-700"
+                    }`}
+                  >
+                    {item}
+                  </a>
+                </motion.li>
+              );
+            })}
           </ul>
         </motion.div>
       )}

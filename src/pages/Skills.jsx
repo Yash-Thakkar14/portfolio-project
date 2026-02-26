@@ -27,13 +27,13 @@ export default function Skills() {
     { icon: <FaHtml5 />, name: "HTML" },
     { icon: <SiTailwindcss />, name: "Tailwind CSS" },
     { icon: <FaAngular />, name: "Angular" },
-    { icon: <SiTypescript />, name: "Typescript" },
+    { icon: <SiTypescript />, name: "TypeScript" },
     { icon: <SiRedux />, name: "Redux Toolkit" },
     { icon: <SiMui />, name: "Material UI" },
     { icon: <SiPython />, name: "Python" },
     { icon: <DiJqueryLogo />, name: "jQuery" },
     { icon: <FaBootstrap />, name: "Bootstrap" },
-    { icon: <FaSalesforce />, name: "Lightning Web Components" },
+    { icon: <FaSalesforce />, name: "Salesforce LWC" },
     { icon: <SiFormik />, name: "Formik" },
   ];
 
@@ -45,7 +45,6 @@ export default function Skills() {
   const touchY = useRef(null);
   const X = useMotionValue(0);
 
-  // Intersection Observer to detect when section is in view
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
@@ -59,7 +58,6 @@ export default function Skills() {
     return () => io.disconnect();
   }, []);
 
-  // Scroll and touch handlers to set direction
   useEffect(() => {
     if (!active) return;
     const onWheel = (e) => setDir(e.deltaY > 0 ? -1 : 1);
@@ -73,7 +71,6 @@ export default function Skills() {
     window.addEventListener("wheel", onWheel, { passive: true });
     window.addEventListener("touchstart", onTouchStart, { passive: true });
     window.addEventListener("touchmove", onTouchMove, { passive: true });
-
     return () => {
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("touchstart", onTouchStart);
@@ -90,7 +87,6 @@ export default function Skills() {
       last = now;
       let next = X.get() + dir * dt * SPEED;
       const loop = trackRef.current?.scrollWidth / 2 || 0;
-
       if (loop) {
         if (next <= -loop) next += loop;
         if (next >= 0) next -= loop;
@@ -105,29 +101,34 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="h-1/2 w-full pb-8 flex flex-col items-center justify-center relative bg-black text-white overflow-hidden"
+      className="min-h-[50vh] w-full py-16 flex flex-col items-center justify-center relative bg-black text-white overflow-hidden"
       ref={sectionRef}
     >
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-0 w-300px h-300px rounded-full bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097] opacity-20 blur-120px animate-pulse" />
-        <div className="absolute bottom-1/4 right-0 w-300px h-300px rounded-full bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097] opacity-20 blur-120px animate-pulse delay-500" />
+        <div className="absolute top-1/4 left-0 w-[300px] h-[300px] rounded-full bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097] opacity-20 blur-[120px] animate-pulse" />
+        <div className="absolute bottom-1/4 right-0 w-[300px] h-[300px] rounded-full bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097] opacity-20 blur-[120px] animate-pulse delay-500" />
       </div>
+
       <motion.h2
         className="text-4xl mt-5 sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1580de] via-[#22217f] to-[#302b63] z-10"
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
+        viewport={{ once: true }}
       >
         My Skills
       </motion.h2>
+
       <motion.p
         className="mt-2 mb-8 text-white/90 text-base sm:text-lg z-10"
         initial={{ opacity: 0, y: -10 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        viewport={{ once: true }}
       >
         Applications | Technologies
       </motion.p>
+
       <div className="relative w-full overflow-hidden">
         <motion.div
           className="flex gap-10 text-6xl text-[#692097]"
@@ -137,7 +138,7 @@ export default function Skills() {
           {repeated.map((s, i) => (
             <div
               key={i}
-              className="flex flex-col items-center gap-2 min-w-120px"
+              className="flex flex-col items-center gap-2 min-w-[120px]"
               aria-label={s.name}
               title={s.name}
             >
