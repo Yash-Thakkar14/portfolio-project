@@ -102,9 +102,9 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Frontend Developer with 2+ years of enterprise experience building
-            scalable, accessible web applications using React and TypeScript. I
-            deliver clean architecture, strong performance, and reliable feature
+            Frontend Developer with experience of building scalable, accessible
+            enterprise web applications using React and TypeScript. I deliver
+            clean architecture, strong performance, and reliable feature
             releases in Agile environments.
           </motion.p>
 
