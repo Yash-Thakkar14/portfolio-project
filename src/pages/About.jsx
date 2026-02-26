@@ -2,9 +2,19 @@ import React from "react";
 import { motion } from "framer-motion";
 import profileImg from "../assets/p.jpg";
 
+const card =
+  "relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-6 overflow-hidden";
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.5, delay },
+  viewport: { once: true },
+});
+
 export default function About() {
   const stats = [
-    { label: "Experience", value: "2+ Years" },
+    { label: "Years Experience", value: "2+" },
     { label: "Deloitte Awards", value: "3 🏆" },
     { label: "Speciality", value: "React & TS" },
   ];
@@ -18,107 +28,123 @@ export default function About() {
   return (
     <section
       id="about"
-      className="min-h-screen w-full flex items-center justify-center relative bg-black text-white overflow-hidden"
+      className="min-h-screen w-full flex items-center justify-center relative bg-black text-white overflow-hidden py-24 px-6 md:px-10 lg:px-16"
     >
       <div className="absolute inset-0 pointer-events-none">
         {glows.map((c, i) => (
           <div
-            className={`absolute rounded-full bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097] animate-pulse ${c}`}
             key={i}
+            className={`absolute rounded-full bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097] animate-pulse ${c}`}
           />
         ))}
       </div>
 
-      <div className="relative z-10 max-w-6xl w-full mx-auto px-6 md:px-10 lg:px-12 py-10 flex flex-col gap-12">
-        <motion.div
-          className="flex flex-col md:flex-row items-center md:items-stretch gap-8"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.4 }}
-        >
+      <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-auto">
           <motion.div
-            className="relative w-40 h-40 md:w-50 md:h-50 rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-[#302b63]/20 to-[#37053c]/20 border-2 border-[#692097]"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 200, damping: 18 }}
+            className={`${card} md:col-span-4 md:row-span-2 flex flex-col justify-end min-h-[340px] p-0`}
+            {...fadeUp(0.05)}
           >
             <img
               src={profileImg}
               alt="Yash Thakkar"
-              className="w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover object-top"
             />
           </motion.div>
-          <div className="flex flex-1 flex-col justify-center text-center md:text-left">
-            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#1580de] via-[#22217f] to-[#302b63]">
-              Yash Thakkar
-            </h2>
-            <p className="mt-2 text-lg sm:text-xl text-white/90">
-              Frontend Developer
-            </p>
-            <p className="mt-4 text-gray-300 leading-relaxed text-base sm:text-lg max-w-2xl md:max-w-3xl">
-              Frontend Developer with experience of delivering enterprise-grade
-              applications in Agile teams. Specialized in React and TypeScript,
+          <motion.div className={`${card} md:col-span-8`} {...fadeUp(0.1)}>
+            <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#692097]/10 blur-[60px] pointer-events-none" />
+            <p className="text-gray-300 text-sm leading-relaxed">
+              Frontend Developer with experience delivering enterprise-grade
+              applications in Agile teams. Specialised in React and TypeScript,
               with hands-on experience in application migration, analytics
               dashboards, accessibility compliance, and cross-team feature
-              delivery.
+              delivery in government and healthcare domains.
             </p>
-
-            <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 max-w-xl">
-              {stats.map((item, i) => (
-                <motion.div
-                  key={i}
-                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-center"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: i * 0.05 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                >
-                  <div className="text-sm text-gray-400">{item.label}</div>
-                  <div className="text-base font-semibold">{item.value}</div>
-                </motion.div>
-              ))}
+          </motion.div>
+          <motion.div
+            className={`${card} md:col-span-5 flex items-center justify-around gap-4`}
+            {...fadeUp(0.15)}
+          >
+            {stats.map((s, i) => (
+              <div key={i} className="text-center">
+                <p className="text-2xl font-bold text-white">{s.value}</p>
+                <p className="text-xs text-gray-400 mt-1">{s.label}</p>
+              </div>
+            ))}
+          </motion.div>
+          <motion.div
+            className={`${card} md:col-span-3 flex flex-col justify-center`}
+            {...fadeUp(0.2)}
+          >
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-gradient-to-br from-[#302b63] to-[#692097] mb-3 text-sm">
+              🎓
             </div>
-            <div className="mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+            <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">
+              Currently
+            </p>
+            <p className="text-sm font-semibold text-white leading-snug">
+              MSc Information Systems
+            </p>
+            <p className="text-xs text-gray-400 mt-1">
+              University of Nottingham
+            </p>
+          </motion.div>
+          {/* <motion.div
+            className={`${card} md:col-span-4 flex flex-col gap-3`}
+            {...fadeUp(0.25)}
+          >
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-gradient-to-br from-[#302b63] to-[#692097] text-sm">
+              💼
+            </div>
+            <div>
+              <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">
+                Previously
+              </p>
+              <p className="text-sm font-semibold text-white">
+                Frontend Developer
+              </p>
+              <p className="text-xs text-gray-400 mt-0.5">
+                Deloitte USI · 2 years
+              </p>
+            </div>
+            <p className="text-xs text-gray-300 leading-relaxed">
+              Angular-to-React migrations, AI dashboards, WCAG-compliant UIs,
+              and Salesforce Lightning Web Components.
+            </p>
+          </motion.div> */}
+          <motion.div
+            className={`${card} md:col-span-4 flex flex-col justify-between gap-4`}
+            {...fadeUp(0.3)}
+          >
+            <div>
+              <p className="text-xs text-gray-400 uppercase tracking-wider mb-2">
+                Open to
+              </p>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                <span className="text-sm text-gray-300">New opportunities</span>
+              </div>
+            </div>
+            <div className="flex flex-col gap-2">
               <a
                 href="#projects"
-                className="inline-flex items-center justify-center rounded-lg bg-white text-black font-semibold px-5 py-3 hover:bg-gray-200 transition"
+                className="text-center py-2.5 rounded-full text-sm font-semibold text-white
+                           bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097]
+                           hover:scale-105 transition-all shadow-lg"
               >
                 View Projects
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-white/10 text-white px-5 py-3 hover:bg-white/20 transition"
+                className="text-center py-2.5 rounded-full text-sm font-semibold text-white
+                           border border-[#692097]/60 bg-white/5
+                           hover:bg-[#692097]/20 hover:border-[#692097] transition-all"
               >
                 Get in Touch
               </a>
             </div>
-          </div>
-        </motion.div>
-        <motion.div
-          className="text-center md:text-left"
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.4 }}
-        >
-          <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
-            About Me
-          </h3>
-          <p className="text-gray-300 leading-relaxed text-base sm:text-lg">
-            I have extensively contributed towards delivering enterprise
-            applications in government and healthcare domains. I’ve contributed
-            to Angular-to-React migrations, built AI-powered analytics
-            dashboards, and developed accessible, WCAG-compliant user
-            interfaces.
-          </p>
-          <p className="mt-4 text-gray-400 text-base sm:text-lg">
-            Beyond coding, I collaborate closely with cross-functional teams to
-            ensure smooth feature delivery from development through
-            release.Currently completing an MSc in Information Systems at the
-            University of Nottingham, expanding my skills in system design and
-            project delivery.
-          </p>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

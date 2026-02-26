@@ -23,7 +23,7 @@ export default function Home() {
       scale: 1.2,
       y: -3,
       filter:
-        "drop-shadow(0 0 8px rgba(13,88,204,0.9)) drop-shadow(0 0 18px rgba(45, 27, 78,0.8))",
+        "drop-shadow(0 0 8px rgba(13,88,204,0.9)) drop-shadow(0 0 18px rgba(45,27,78,0.8))",
     },
     tap: { scale: 0.95, y: 0, transition: { duration: 0.08 } },
   };
@@ -58,20 +58,23 @@ export default function Home() {
   }, [subIndex, index, deleting, roles]);
 
   return (
-    <section id="home" className="w-full h-screen relative bg-black">
+    <section
+      id="home"
+      className="w-full h-screen relative bg-black text-white overflow-hidden"
+    >
       <ParticlesBackground />
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-32 -left-32 w-62.5 sm:w-87.5 md:w-125 h-62.5 sm:h-87.5 md:h-125 rounded-full bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097] blur-3xl animate-glow-pulse" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-32 -left-32 w-[350px] h-[350px] rounded-full bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097] blur-3xl animate-glow-pulse" />
         <div
-          className="absolute bottom-0 right-0 w-62.5 sm:w-87.5 md:w-125 h-62.5 sm:h-87.5 md:h-125 rounded-full bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097] blur-3xl animate-glow-pulse"
+          className="absolute bottom-0 right-0 w-[350px] h-[350px] rounded-full bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097] blur-3xl animate-glow-pulse"
           style={{ animationDelay: "1.5s" }}
         />
       </div>
 
-      <div className="relative z-10 h-full w-full max-w-7xl mx-auto px-4 flex items-center justify-center lg:justify-start">
-        <div className="w-full lg:pr-24 mx-auto max-w-3xl">
+      <div className="relative z-10 h-full max-w-6xl mx-auto px-6 md:px-10 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-x-12 items-center">
+        <div className="lg:col-span-7 flex flex-col gap-6">
           <motion.div
-            className="mb-3 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-white tracking-wide min-h-[1.6rem]"
+            className="text-xl sm:text-2xl md:text-3xl font-semibold text-white tracking-wide min-h-[1.6rem]"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -82,58 +85,50 @@ export default function Home() {
               style={{ height: "1em" }}
             />
           </motion.div>
-
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1580de] via-[#22217f] to-[#302b63] drop-shadow-lg"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            Hi, I'm
-            <br />
-            <span className="text-white font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl lg:whitespace-nowrap">
+            <span className="block text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1580de] via-[#22217f] to-[#302b63]">
+              Hi, I'm
+            </span>
+            <span className="block text-5xl sm:text-6xl md:text-7xl font-bold text-white mt-1 lg:whitespace-nowrap">
               Yash Thakkar
             </span>
           </motion.h1>
-
-          <motion.p
-            className="mt-6 text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Frontend Developer with experience of building scalable, accessible
-            enterprise web applications using React and TypeScript. I deliver
-            clean architecture, strong performance, and reliable feature
-            releases in Agile environments.
-          </motion.p>
-
           <motion.div
-            className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-6"
+            className="flex flex-wrap gap-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
           >
             <a
               href="#projects"
-              className="px-6 py-3 rounded-full font-medium text-lg text-white bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097] shadow-lg hover:scale-105 transition-all"
+              className="px-6 py-3 rounded-full font-medium text-white
+                         bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097]
+                         shadow-lg hover:scale-105 transition-all"
             >
               View my Work
             </a>
             <a
-              href="/public/Yash Thakkar_CV_FrontendDev.pdf"
+              href="/CV.pdf"
               download
-              className="px-6 py-3 rounded-full text-lg font-medium text-black bg-white hover:bg-gray-200 shadow-lg hover:scale-105 transition-all"
+              className="px-6 py-3 rounded-full font-medium text-black bg-white hover:bg-gray-200 shadow-lg hover:scale-105 transition-all"
             >
               My Resume
             </a>
           </motion.div>
-
-          <div className="mt-10 flex gap-5 text-2xl md:text-3xl justify-center lg:justify-start">
+          <motion.div
+            className="flex gap-5 text-2xl md:text-3xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+          >
             {socials.map(({ Icon, label, href }) => (
               <motion.a
-                href={href}
                 key={label}
+                href={href}
                 target="_blank"
                 aria-label={label}
                 rel="noopener noreferrer"
@@ -146,8 +141,44 @@ export default function Home() {
                 <Icon />
               </motion.a>
             ))}
-          </div>
+          </motion.div>
         </div>
+        <motion.div
+          className="hidden lg:flex lg:col-span-5 flex-col gap-8"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+            Frontend Developer with experience building scalable, accessible
+            enterprise web applications using React and TypeScript. Clean
+            architecture, strong performance, and reliable feature releases in
+            Agile environments.
+          </p>
+
+          <div>
+            <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">
+              Stack
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {[
+                "React",
+                "TypeScript",
+                "Tailwind CSS",
+                "Salesforce LWC",
+                "Redux",
+              ].map((t) => (
+                <span
+                  key={t}
+                  className="px-3 py-1 rounded-full text-xs font-medium text-gray-300
+                             bg-gradient-to-r from-[#302b63]/60 to-[#37053c]/60 border border-white/10"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
