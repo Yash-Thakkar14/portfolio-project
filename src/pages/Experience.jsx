@@ -8,7 +8,7 @@ const experiences = [
     company: "Deloitte USI",
     duration: "Jul 2023 – Jul 2025",
     description:
-      "Built React apps & Salesforce LWCs in Agile teams. Cut CI failures by 20%. Recognised with 3 awards.",
+      "Built enterprise React and Salesforce LWC applications in Agile teams. Improved CI stability by 20%.",
     technologies: [
       "React",
       "TypeScript",
@@ -16,6 +16,7 @@ const experiences = [
       "Redux Toolkit",
       "Jest",
       "WCAG",
+      "Angular",
     ],
   },
   {
@@ -23,7 +24,7 @@ const experiences = [
     company: "Zydus Cadila Healthcare",
     duration: "Nov – Dec 2021",
     description:
-      "Root cause analysis on a corrosion issue — reduced costs by 12% and downtime by 15%.",
+      "Root cause analysis on a corrosion issue reduced costs by 12% and downtime by 15%.",
     technologies: [
       "Root Cause Analysis",
       "Process Engineering",
