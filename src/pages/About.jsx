@@ -39,31 +39,73 @@ export default function About() {
         ))}
       </div>
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col gap-6">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-auto">
+      <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col gap-4">
+        {/*
+          ┌──────────────┬─────────────────────────┐
+          │              │  Bio + CTAs             │
+          │  Photo       ├──────────────┬──────────┤
+          │              │  Stats       │  MSc     │
+          └──────────────┴──────────────┴──────────┘
+        */}
+        <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 gap-4">
+          {/* Photo — tall, spans 2 rows */}
           <motion.div
-            className={`${card} md:col-span-4 md:row-span-2 flex flex-col justify-end min-h-[340px] p-0`}
-            {...fadeUp(0.05)}
+            className={`${card} md:col-span-4 md:row-span-2 min-h-[320px] p-0`}
+            {...fadeUp(0)}
           >
             <img
               src={profileImg}
               alt="Yash Thakkar"
               className="absolute inset-0 w-full h-full object-cover object-top"
             />
+            <div className="absolute bottom-0 left-0 right-0 z-10 p-5 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
+              <p className="text-lg font-bold text-white">Yash Thakkar</p>
+              <p className="text-xs text-gray-400 mt-0.5">Frontend Developer</p>
+            </div>
           </motion.div>
-          <motion.div className={`${card} md:col-span-8`} {...fadeUp(0.1)}>
-            <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#692097]/10 blur-[60px] pointer-events-none" />
-            <p className="text-gray-300 text-sm leading-relaxed">
-              Frontend Developer with experience delivering enterprise-grade
-              applications in Agile teams. Specialised in React and TypeScript,
-              with hands-on experience in application migration, analytics
-              dashboards, accessibility compliance, and cross-team feature
-              delivery in government and healthcare domains.
-            </p>
-          </motion.div>
+
+          {/* Bio + CTAs — top right */}
           <motion.div
-            className={`${card} md:col-span-5 flex items-center justify-around gap-4`}
-            {...fadeUp(0.15)}
+            className={`${card} md:col-span-8 flex flex-col justify-between gap-5`}
+            {...fadeUp(0.1)}
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#1580de]/10 blur-[60px] pointer-events-none" />
+            <div>
+              <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">
+                About
+              </p>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                Frontend Developer with experience delivering enterprise-grade
+                applications in Agile teams. Specialised in React and
+                TypeScript, with hands-on experience in application migration,
+                analytics dashboards, accessibility compliance, and cross-team
+                feature delivery in government and healthcare domains.
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <a
+                href="#projects"
+                className="px-5 py-2.5 rounded-full text-sm font-semibold text-white
+                           bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097]
+                           hover:scale-105 transition-all shadow-lg"
+              >
+                View Projects
+              </a>
+              <a
+                href="#contact"
+                className="px-5 py-2.5 rounded-full text-sm font-semibold text-white
+                           border border-[#692097]/60 bg-white/5
+                           hover:bg-[#692097]/20 hover:border-[#692097] transition-all"
+              >
+                Get in Touch
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Stats — bottom middle */}
+          <motion.div
+            className={`${card} md:col-span-5 flex items-center justify-around gap-2`}
+            {...fadeUp(0.2)}
           >
             {stats.map((s, i) => (
               <div key={i} className="text-center">
@@ -72,9 +114,11 @@ export default function About() {
               </div>
             ))}
           </motion.div>
+
+          {/* MSc — bottom right */}
           <motion.div
             className={`${card} md:col-span-3 flex flex-col justify-center`}
-            {...fadeUp(0.2)}
+            {...fadeUp(0.25)}
           >
             <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-gradient-to-br from-[#302b63] to-[#692097] mb-3 text-sm">
               🎓
@@ -85,64 +129,7 @@ export default function About() {
             <p className="text-sm font-semibold text-white leading-snug">
               MSc Information Systems
             </p>
-            <p className="text-xs text-gray-400 mt-1">
-              University of Nottingham
-            </p>
-          </motion.div>
-          {/* <motion.div
-            className={`${card} md:col-span-4 flex flex-col gap-3`}
-            {...fadeUp(0.25)}
-          >
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-gradient-to-br from-[#302b63] to-[#692097] text-sm">
-              💼
-            </div>
-            <div>
-              <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">
-                Previously
-              </p>
-              <p className="text-sm font-semibold text-white">
-                Frontend Developer
-              </p>
-              <p className="text-xs text-gray-400 mt-0.5">
-                Deloitte USI · 2 years
-              </p>
-            </div>
-            <p className="text-xs text-gray-300 leading-relaxed">
-              Angular-to-React migrations, AI dashboards, WCAG-compliant UIs,
-              and Salesforce Lightning Web Components.
-            </p>
-          </motion.div> */}
-          <motion.div
-            className={`${card} md:col-span-4 flex flex-col justify-between gap-4`}
-            {...fadeUp(0.3)}
-          >
-            <div>
-              <p className="text-xs text-gray-400 uppercase tracking-wider mb-2">
-                Open to
-              </p>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-sm text-gray-300">New opportunities</span>
-              </div>
-            </div>
-            <div className="flex flex-col gap-2">
-              <a
-                href="#projects"
-                className="text-center py-2.5 rounded-full text-sm font-semibold text-white
-                           bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097]
-                           hover:scale-105 transition-all shadow-lg"
-              >
-                View Projects
-              </a>
-              <a
-                href="#contact"
-                className="text-center py-2.5 rounded-full text-sm font-semibold text-white
-                           border border-[#692097]/60 bg-white/5
-                           hover:bg-[#692097]/20 hover:border-[#692097] transition-all"
-              >
-                Get in Touch
-              </a>
-            </div>
+            <p className="text-xs text-gray-400 mt-1">Univ. of Nottingham</p>
           </motion.div>
         </div>
       </div>
