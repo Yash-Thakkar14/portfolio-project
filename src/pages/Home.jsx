@@ -155,29 +155,6 @@ export default function Home() {
             architecture, strong performance, and reliable feature releases in
             Agile environments.
           </p>
-
-          <div>
-            <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">
-              Stack
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {[
-                "React",
-                "TypeScript",
-                "Tailwind CSS",
-                "Salesforce LWC",
-                "Redux",
-              ].map((t) => (
-                <span
-                  key={t}
-                  className="px-3 py-1 rounded-full text-xs font-medium text-gray-300
-                             bg-gradient-to-r from-[#302b63]/60 to-[#37053c]/60 border border-white/10"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>
