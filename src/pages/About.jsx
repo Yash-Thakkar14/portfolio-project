@@ -40,15 +40,15 @@ export default function About() {
       </div>
 
       <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 md:[grid-template-rows:auto_auto] gap-4">
           <motion.div
-            className={`${card} md:col-span-4 md:row-span-2 min-h-[320px] p-0`}
+            className={`${card} md:col-span-4 md:row-span-2 h-[200px] md:h-[420px] lg:h-auto lg:min-h-[320px] p-0`}
             {...fadeUp(0)}
           >
             <img
               src={profileImg}
               alt="Yash Thakkar"
-              className="absolute inset-0 w-full h-full object-cover object-top"
+              className="absolute inset-0 w-full h-full object-cover object-center"
             />
             <div className="absolute bottom-0 left-0 right-0 z-10 p-5 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
               <p className="text-lg font-bold text-white">Yash Thakkar</p>
@@ -72,7 +72,7 @@ export default function About() {
                 feature delivery in government and healthcare domains.
               </p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
               <a
                 href="#projects"
                 className="px-5 py-2.5 rounded-full text-sm font-semibold text-white
@@ -92,7 +92,7 @@ export default function About() {
             </div>
           </motion.div>
           <motion.div
-            className={`${card} md:col-span-5 flex items-center justify-around gap-2`}
+            className={`${card} md:col-span-5 flex items-center justify-around gap-2 py-6`}
             {...fadeUp(0.2)}
           >
             {stats.map((s, i) => (
@@ -103,19 +103,21 @@ export default function About() {
             ))}
           </motion.div>
           <motion.div
-            className={`${card} md:col-span-3 flex flex-col justify-center`}
+            className={`${card} md:col-span-3 flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-0 md:justify-center`}
             {...fadeUp(0.25)}
           >
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-gradient-to-br from-[#302b63] to-[#692097] mb-3 text-sm">
+            <div className="w-10 h-10 flex-shrink-0 rounded-lg flex items-center justify-center bg-gradient-to-br from-[#302b63] to-[#692097] md:mb-3 text-sm">
               🎓
             </div>
-            <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">
-              Currently
-            </p>
-            <p className="text-sm font-semibold text-white leading-snug">
-              MSc Information Systems
-            </p>
-            <p className="text-xs text-gray-400 mt-1">Univ. of Nottingham</p>
+            <div>
+              <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">
+                Currently
+              </p>
+              <p className="text-sm font-semibold text-white leading-snug">
+                MSc Information Systems
+              </p>
+              <p className="text-xs text-gray-400 mt-1">Univ. of Nottingham</p>
+            </div>
           </motion.div>
         </div>
       </div>

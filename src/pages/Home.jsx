@@ -57,10 +57,19 @@ export default function Home() {
     return () => clearTimeout(timeout);
   }, [subIndex, index, deleting, roles]);
 
+  const bio = (
+    <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+      Frontend Developer with experience building scalable, accessible
+      enterprise web applications using React and TypeScript. Clean
+      architecture, strong performance, and reliable feature releases in Agile
+      environments.
+    </p>
+  );
+
   return (
     <section
       id="home"
-      className="w-full h-screen relative bg-black text-white overflow-hidden"
+      className="w-full min-h-screen relative bg-black text-white overflow-hidden"
     >
       <ParticlesBackground />
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -71,8 +80,8 @@ export default function Home() {
         />
       </div>
 
-      <div className="relative z-10 h-full max-w-6xl mx-auto px-6 md:px-10 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-x-12 items-center">
-        <div className="lg:col-span-7 flex flex-col gap-6">
+      <div className="relative z-10 min-h-screen max-w-6xl mx-auto px-6 md:px-10 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-x-12 items-center py-32 lg:py-0">
+        <div className="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left items-center lg:items-start">
           <motion.div
             className="text-xl sm:text-2xl md:text-3xl font-semibold text-white tracking-wide min-h-[1.6rem]"
             initial={{ opacity: 0, y: 12 }}
@@ -98,7 +107,15 @@ export default function Home() {
             </span>
           </motion.h1>
           <motion.div
-            className="flex flex-wrap gap-4"
+            className="lg:hidden"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            {bio}
+          </motion.div>
+          <motion.div
+            className="flex flex-wrap gap-4 justify-center lg:justify-start"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.7 }}
@@ -120,7 +137,7 @@ export default function Home() {
             </a>
           </motion.div>
           <motion.div
-            className="flex gap-5 text-2xl md:text-3xl"
+            className="flex gap-5 text-2xl md:text-3xl justify-center lg:justify-start"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.9 }}
@@ -149,12 +166,7 @@ export default function Home() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-            Frontend Developer with experience building scalable, accessible
-            enterprise web applications using React and TypeScript. Clean
-            architecture, strong performance, and reliable feature releases in
-            Agile environments.
-          </p>
+          {bio}
         </motion.div>
       </div>
     </section>
