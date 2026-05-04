@@ -21,6 +21,15 @@ const projects = [
     github: "https://github.com/Yash-Thakkar14/react-swiggy-clone",
     live: null,
   },
+  {
+    id: 3,
+    title: "HR Leave Tracking System",
+    description:
+      "A full-stack MERN Leave Management System app implementing RBAC and production-ready authentication for an Information System Design and Development coursework.",
+    technologies: ["React", "Node.js", "Express", "MongoDB", "JWT"],
+    github: "https://github.com/Yash-Thakkar14/hr-leave-tracking-system",
+    live: "https://hr-leave-tracking-system.vercel.app/",
+  },
 ];
 
 export default function Projects() {
