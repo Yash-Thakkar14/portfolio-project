@@ -7,6 +7,7 @@ import {
   FaAngular,
   FaBootstrap,
   FaSalesforce,
+  FaNodeJs,
 } from "react-icons/fa";
 import {
   SiTailwindcss,
@@ -15,6 +16,8 @@ import {
   SiMui,
   SiPython,
   SiFormik,
+  SiMongodb,
+  SiExpress,
 } from "react-icons/si";
 import { DiJqueryLogo } from "react-icons/di";
 import { motion, useMotionValue } from "framer-motion";
@@ -35,6 +38,9 @@ export default function Skills() {
     { icon: <FaBootstrap />, name: "Bootstrap" },
     { icon: <FaSalesforce />, name: "Salesforce LWC" },
     { icon: <SiFormik />, name: "Formik" },
+    { icon: <SiMongodb />, name: "MongoDB" },
+    { icon: <FaNodeJs />, name: "Node.js" },
+    { icon: <SiExpress />, name: "Express" },
   ];
 
   const repeated = [...skills, ...skills];
