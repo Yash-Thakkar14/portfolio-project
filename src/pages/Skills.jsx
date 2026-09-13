@@ -1,132 +1,80 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  FaReact,
-  FaJs,
-  FaCss3,
-  FaHtml5,
-  FaAngular,
-  FaBootstrap,
-  FaSalesforce,
-  FaNodeJs,
-  FaMicrosoft,
-} from "react-icons/fa";
-import {
-  SiTailwindcss,
-  SiTypescript,
-  SiRedux,
-  SiMui,
-  SiPython,
-  SiFormik,
-  SiMongodb,
-  SiExpress,
-  SiFlask,
-  SiSqlite,
-} from "react-icons/si";
-import {
-  TbApps,
-  TbRouteSquare,
-  TbDatabase,
-  TbMathFunction,
-  TbChartInfographic,
-} from "react-icons/tb";
-import { DiJqueryLogo } from "react-icons/di";
-import { motion, useMotionValue } from "framer-motion";
+import React, { useEffect, useMemo, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+
+const SKILLS = [
+  "React",
+  "TypeScript",
+  "JavaScript",
+  "HTML",
+  "CSS",
+  "Tailwind CSS",
+  "Angular",
+  "Redux Toolkit",
+  "Material UI",
+  "Bootstrap",
+  "jQuery",
+  "Formik",
+  "Salesforce LWC",
+  "Node.js",
+  "Express",
+  "MongoDB",
+  "Python",
+  "Flask",
+  "SQLite",
+  "Power Apps",
+  "Power Automate",
+  "Dataverse",
+  "Power Fx",
+  "Dynamics 365",
+  "Power BI",
+];
+
+const CORE = [
+  "React",
+  "TypeScript",
+  "JavaScript",
+  "Tailwind CSS",
+  "Node.js",
+  "Python",
+  "Power Apps",
+  "Power Automate",
+  "Dataverse",
+];
+
+const SPOTLIGHT_MS = 1400;
+const STAGGER_S = 0.038;
+
+function shuffle(length) {
+  const order = Array.from({ length }, (_, i) => i);
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  return order;
+}
 
 export default function Skills() {
-  const skills = [
-    { icon: <FaReact />, name: "React" },
-    { icon: <FaJs />, name: "JavaScript" },
-    { icon: <FaCss3 />, name: "CSS" },
-    { icon: <FaHtml5 />, name: "HTML" },
-    { icon: <SiTailwindcss />, name: "Tailwind CSS" },
-    { icon: <FaAngular />, name: "Angular" },
-    { icon: <SiTypescript />, name: "TypeScript" },
-    { icon: <SiRedux />, name: "Redux Toolkit" },
-    { icon: <SiMui />, name: "Material UI" },
-    { icon: <TbApps />, name: "Power Apps" },
-    { icon: <TbRouteSquare />, name: "Power Automate" },
-    { icon: <TbDatabase />, name: "Dataverse" },
-    { icon: <TbMathFunction />, name: "Power Fx" },
-    { icon: <FaMicrosoft />, name: "Dynamics 365" },
-    { icon: <TbChartInfographic />, name: "Power BI" },
-    { icon: <SiPython />, name: "Python" },
-    { icon: <SiFlask />, name: "Flask" },
-    { icon: <SiSqlite />, name: "SQLite" },
-    { icon: <DiJqueryLogo />, name: "jQuery" },
-    { icon: <FaBootstrap />, name: "Bootstrap" },
-    { icon: <FaSalesforce />, name: "Salesforce LWC" },
-    { icon: <SiFormik />, name: "Formik" },
-    { icon: <SiMongodb />, name: "MongoDB" },
-    { icon: <FaNodeJs />, name: "Node.js" },
-    { icon: <SiExpress />, name: "Express" },
-  ];
+  const reduceMotion = useReducedMotion();
+  const [paused, setPaused] = useState(false);
+  const [step, setStep] = useState(0);
 
-  const repeated = [...skills, ...skills];
-  const [dir, setDir] = useState(-1);
-  const [active, setActive] = useState(false);
-  const sectionRef = useRef(null);
-  const trackRef = useRef(null);
-  const touchY = useRef(null);
-  const X = useMotionValue(0);
+  const delays = useMemo(() => shuffle(SKILLS.length), []);
 
   useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        setActive(entry.isIntersecting && entry.intersectionRatio > 0.1);
-      },
-      { threshold: [0.1] },
+    if (paused || reduceMotion) return;
+    const id = setInterval(
+      () => setStep((s) => (s + 1) % CORE.length),
+      SPOTLIGHT_MS,
     );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+    return () => clearInterval(id);
+  }, [paused, reduceMotion]);
 
-  useEffect(() => {
-    if (!active) return;
-    const onWheel = (e) => setDir(e.deltaY > 0 ? -1 : 1);
-    const onTouchStart = (e) => (touchY.current = e.touches[0].clientY);
-    const onTouchMove = (e) => {
-      if (touchY.current == null) return;
-      const delta = e.touches[0].clientY - touchY.current;
-      setDir(delta > 0 ? 1 : -1);
-      touchY.current = e.touches[0].clientY;
-    };
-    window.addEventListener("wheel", onWheel, { passive: true });
-    window.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("touchmove", onTouchMove, { passive: true });
-    return () => {
-      window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("touchstart", onTouchStart);
-      window.removeEventListener("touchmove", onTouchMove);
-    };
-  }, [active]);
-
-  useEffect(() => {
-    let id;
-    let last = performance.now();
-    const SPEED = 80;
-    const tick = (now) => {
-      const dt = (now - last) / 1000;
-      last = now;
-      let next = X.get() + dir * dt * SPEED;
-      const loop = trackRef.current?.scrollWidth / 2 || 0;
-      if (loop) {
-        if (next <= -loop) next += loop;
-        if (next >= 0) next -= loop;
-      }
-      X.set(next);
-      id = requestAnimationFrame(tick);
-    };
-    id = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(id);
-  }, [dir, X]);
+  const litSkill = paused || reduceMotion ? null : CORE[step];
 
   return (
     <section
       id="skills"
-      className="min-h-[50vh] w-full py-16 flex flex-col items-center justify-center relative bg-black text-white overflow-hidden"
-      ref={sectionRef}
+      className="min-h-[50vh] w-full py-20 flex flex-col items-center justify-center relative bg-black text-white overflow-hidden"
     >
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-0 w-[300px] h-[300px] rounded-full bg-gradient-to-r from-[#302b63] via-[#37053c] to-[#692097] opacity-20 blur-[120px] animate-pulse" />
@@ -134,7 +82,7 @@ export default function Skills() {
       </div>
 
       <motion.h2
-        className="text-4xl mt-5 sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1580de] via-[#22217f] to-[#302b63] z-10"
+        className="text-4xl sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1580de] via-[#22217f] to-[#302b63] z-10"
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
@@ -144,7 +92,7 @@ export default function Skills() {
       </motion.h2>
 
       <motion.p
-        className="mt-2 mb-8 text-white/90 text-base sm:text-lg z-10"
+        className="mt-2 mb-10 text-white/90 text-base sm:text-lg z-10"
         initial={{ opacity: 0, y: -10 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -153,26 +101,40 @@ export default function Skills() {
         Applications | Technologies
       </motion.p>
 
-      <div className="relative w-full overflow-hidden">
-        <motion.div
-          className="flex gap-10 text-6xl text-[#692097]"
-          ref={trackRef}
-          style={{ x: X, whiteSpace: "nowrap", willChange: "transform" }}
-        >
-          {repeated.map((s, i) => (
-            <div
-              key={i}
-              className="flex flex-col items-center gap-2 min-w-[120px]"
-              aria-label={s.name}
-              title={s.name}
+      <div
+        className="relative z-10 w-full max-w-3xl px-6 flex flex-wrap justify-center gap-2.5"
+        onPointerEnter={() => setPaused(true)}
+        onPointerLeave={() => setPaused(false)}
+      >
+        {SKILLS.map((skill, index) => {
+          const lit = skill === litSkill;
+          return (
+            <motion.span
+              key={skill}
+              initial={{ opacity: 0, scale: 0.86 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.52,
+                delay: delays[index] * STAGGER_S,
+                ease: [0.22, 0.85, 0.25, 1],
+              }}
+              className={`relative overflow-hidden rounded-full border px-4 py-1.5 text-sm
+                          transition-colors duration-300 cursor-default
+                          before:content-[''] before:absolute before:inset-0 before:origin-left
+                          before:bg-gradient-to-r before:from-[#302b63] before:via-[#37053c] before:to-[#692097]
+                          before:transition-transform before:ease-out
+                          hover:text-white hover:border-transparent hover:before:scale-x-100
+                          ${
+                            lit
+                              ? "text-white border-transparent before:scale-x-100 before:duration-700"
+                              : "text-gray-300 border-white/15 bg-white/5 before:scale-x-0 before:duration-300"
+                          }`}
             >
-              <span className="hover:scale-125 transition-transform duration-300">
-                {s.icon}
-              </span>
-              <p className="text-sm">{s.name}</p>
-            </div>
-          ))}
-        </motion.div>
+              <span className="relative z-10">{skill}</span>
+            </motion.span>
+          );
+        })}
       </div>
     </section>
   );
