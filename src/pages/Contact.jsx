@@ -71,70 +71,87 @@ export default function Contact() {
 
           <form className="flex flex-col gap-5" onSubmit={formik.handleSubmit}>
             <div className="flex flex-col">
-              <label className="mb-1">
+              <label className="mb-1" htmlFor="contact-name">
                 Your Name<span className="text-red-500">*</span>
               </label>
               <input
+                id="contact-name"
                 type="text"
                 name="name"
+                autoComplete="name"
                 placeholder="Your Name"
                 value={formik.values.name}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                aria-invalid={fieldError("name") ? "true" : "false"}
+                aria-describedby={fieldError("name") ? "contact-name-error" : undefined}
                 className={`p-3 rounded-md bg-white/10 border ${
                   fieldError("name") ? "border-red-500" : "border-gray-500"
                 } text-white focus:outline-none focus:border-[#692097] transition-colors`}
               />
               {fieldError("name") && (
-                <p className="text-red-500 text-xs mt-1">
+                <p id="contact-name-error" className="text-red-500 text-xs mt-1">
                   {fieldError("name")}
                 </p>
               )}
             </div>
             <div className="flex flex-col">
-              <label className="mb-1">
+              <label className="mb-1" htmlFor="contact-email">
                 Your Email<span className="text-red-500">*</span>
               </label>
               <input
+                id="contact-email"
                 type="email"
                 name="email"
+                autoComplete="email"
                 placeholder="Your Email"
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                aria-invalid={fieldError("email") ? "true" : "false"}
+                aria-describedby={
+                  fieldError("email") ? "contact-email-error" : undefined
+                }
                 className={`p-3 rounded-md bg-white/10 border ${
                   fieldError("email") ? "border-red-500" : "border-gray-500"
                 } text-white focus:outline-none focus:border-[#692097] transition-colors`}
               />
               {fieldError("email") && (
-                <p className="text-red-500 text-xs mt-1">
+                <p id="contact-email-error" className="text-red-500 text-xs mt-1">
                   {fieldError("email")}
                 </p>
               )}
             </div>
             <div className="flex flex-col">
-              <label className="mb-1">
+              <label className="mb-1" htmlFor="contact-message">
                 Your Message<span className="text-red-500">*</span>
               </label>
               <textarea
+                id="contact-message"
                 name="message"
                 placeholder="Your Message"
                 value={formik.values.message}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 rows={4}
+                aria-invalid={fieldError("message") ? "true" : "false"}
+                aria-describedby={
+                  fieldError("message") ? "contact-message-error" : undefined
+                }
                 className={`bg-white/10 border ${
                   fieldError("message") ? "border-red-500" : "border-white/20"
                 } rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#692097]/50 transition-colors resize-none`}
               />
               {fieldError("message") && (
-                <p className="text-red-500 text-xs mt-1">
+                <p id="contact-message-error" className="text-red-500 text-xs mt-1">
                   {fieldError("message")}
                 </p>
               )}
             </div>
             {status && (
               <p
+                role="status"
+                aria-live="polite"
                 className={`text-sm ${
                   status === "success"
                     ? "text-green-400"
