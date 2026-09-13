@@ -134,7 +134,7 @@ export default function Home() {
               View my Work
             </a>
             <a
-              href="/Yash_CV_June.pdf"
+              href="/Yash_Thakkar_CV.pdf"
               download
               className="px-6 py-3 rounded-full font-medium text-black bg-white hover:bg-gray-200 shadow-lg hover:scale-105 transition-all"
             >
