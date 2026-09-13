@@ -8,6 +8,7 @@ import {
   FaBootstrap,
   FaSalesforce,
   FaNodeJs,
+  FaMicrosoft,
 } from "react-icons/fa";
 import {
   SiTailwindcss,
@@ -18,7 +19,16 @@ import {
   SiFormik,
   SiMongodb,
   SiExpress,
+  SiFlask,
+  SiSqlite,
 } from "react-icons/si";
+import {
+  TbApps,
+  TbRouteSquare,
+  TbDatabase,
+  TbMathFunction,
+  TbChartInfographic,
+} from "react-icons/tb";
 import { DiJqueryLogo } from "react-icons/di";
 import { motion, useMotionValue } from "framer-motion";
 
@@ -33,7 +43,15 @@ export default function Skills() {
     { icon: <SiTypescript />, name: "TypeScript" },
     { icon: <SiRedux />, name: "Redux Toolkit" },
     { icon: <SiMui />, name: "Material UI" },
+    { icon: <TbApps />, name: "Power Apps" },
+    { icon: <TbRouteSquare />, name: "Power Automate" },
+    { icon: <TbDatabase />, name: "Dataverse" },
+    { icon: <TbMathFunction />, name: "Power Fx" },
+    { icon: <FaMicrosoft />, name: "Dynamics 365" },
+    { icon: <TbChartInfographic />, name: "Power BI" },
     { icon: <SiPython />, name: "Python" },
+    { icon: <SiFlask />, name: "Flask" },
+    { icon: <SiSqlite />, name: "SQLite" },
     { icon: <DiJqueryLogo />, name: "jQuery" },
     { icon: <FaBootstrap />, name: "Bootstrap" },
     { icon: <FaSalesforce />, name: "Salesforce LWC" },

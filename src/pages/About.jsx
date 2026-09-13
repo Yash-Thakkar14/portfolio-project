@@ -16,7 +16,7 @@ export default function About() {
   const stats = [
     { label: "Years Experience", value: "2+" },
     { label: "Deloitte Awards", value: "3 🏆" },
-    { label: "Speciality", value: "React & TS" },
+    { label: "Speciality", value: "React & Power Platform", small: true },
   ];
 
   const glows = [
@@ -52,7 +52,9 @@ export default function About() {
             />
             <div className="absolute bottom-0 left-0 right-0 z-10 p-5 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
               <p className="text-lg font-bold text-white">Yash Thakkar</p>
-              <p className="text-xs text-gray-400 mt-0.5">Frontend Developer</p>
+              <p className="text-xs text-gray-400 mt-0.5">
+                Frontend & Power Platform Developer
+              </p>
             </div>
           </motion.div>
           <motion.div
@@ -65,11 +67,13 @@ export default function About() {
                 About
               </p>
               <p className="text-gray-300 text-sm leading-relaxed">
-                Frontend Developer with experience delivering enterprise-grade
+                Developer with two years delivering enterprise-grade
                 applications in Agile teams. Specialised in React and
                 TypeScript, with hands-on experience in application migration,
                 analytics dashboards, accessibility compliance, and cross-team
-                feature delivery in government and healthcare domains.
+                feature delivery in government and healthcare domains. Currently
+                automating procurement on the Microsoft Power Platform and
+                Dynamics 365.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -97,7 +101,13 @@ export default function About() {
           >
             {stats.map((s, i) => (
               <div key={i} className="text-center">
-                <p className="text-2xl font-bold text-white">{s.value}</p>
+                <p
+                  className={`font-bold text-white ${
+                    s.small ? "text-base leading-tight" : "text-2xl"
+                  }`}
+                >
+                  {s.value}
+                </p>
                 <p className="text-xs text-gray-400 mt-1">{s.label}</p>
               </div>
             ))}

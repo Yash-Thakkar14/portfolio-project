@@ -4,6 +4,21 @@ import TimelineScroller from "../components/TimelineScroller";
 
 const experiences = [
   {
+    role: "Digital Strategy Lead",
+    company: "Nova Interiors",
+    duration: "Jun 2026 – Present",
+    description:
+      "Digitised a manual procurement process into a managed Power Platform module extending the company Dynamics 365 CRM, automating purchase order generation, JIT stock ordering and goods receipt.",
+    technologies: [
+      "Power Apps",
+      "Power Automate",
+      "Dataverse",
+      "Power Fx",
+      "Dynamics 365",
+      "Power BI",
+    ],
+  },
+  {
     role: "Frontend Developer",
     company: "Deloitte USI",
     duration: "Jul 2023 – Jul 2025",

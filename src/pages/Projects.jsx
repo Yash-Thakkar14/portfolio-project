@@ -4,6 +4,15 @@ import ProjectCard from "../components/ProjectCard";
 
 const projects = [
   {
+    id: 4,
+    title: "Benefit Navigator",
+    description:
+      "MSc dissertation prototype implementing the FDAR framework, built solo in Python and Flask over a SQLite store and covered by 126 automated tests. Released under the MIT licence.",
+    technologies: ["Python", "Flask", "SQLite", "Automated Testing"],
+    github: "https://github.com/Yash-Thakkar14/benefit-navigator",
+    live: null,
+  },
+  {
     id: 1,
     title: "Portfolio Project",
     description:

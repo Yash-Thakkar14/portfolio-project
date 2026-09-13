@@ -29,7 +29,11 @@ export default function Home() {
   };
 
   const roles = useMemo(
-    () => ["Frontend Developer", "Web Developer", "React Developer"],
+    () => [
+      "Frontend Developer",
+      "Power Platform Developer",
+      "Full-Stack Developer",
+    ],
     [],
   );
 
@@ -59,8 +63,9 @@ export default function Home() {
 
   const bio = (
     <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-      Frontend Developer with experience building scalable, accessible
-      enterprise web applications using React and TypeScript. Clean
+      Developer with two years building scalable, accessible enterprise web
+      applications in React and TypeScript, now automating business processes on
+      the Microsoft Power Platform and building Python services. Clean
       architecture, strong performance, and reliable feature releases in Agile
       environments.
     </p>
